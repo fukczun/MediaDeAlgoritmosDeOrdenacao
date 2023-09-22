@@ -97,7 +97,7 @@ public class BrincandoComOrdenacao {
 		}
 		
 		
-		System.out.println("\nMédias:");
+		System.out.println("//MÉDIAS:");
 		for (int i=0; i<3; i++) {
 			System.out.println("Para vetores de tamanho " + tamanhoVetores[i] + " (em segundos): \n");
 			
