@@ -1,6 +1,8 @@
 package atividade2;
 
+import java.util.Arrays;
 import java.util.Random;
+import java.util.Scanner;
 
 public class BrincandoComOrdenacao {
 	public static int[] gerarVetor (int tamanho, boolean isCrescente) {
@@ -35,12 +37,14 @@ public class BrincandoComOrdenacao {
 	
 	public static void main(String[] args) {
 		Ordenacao_IF o = new Ordenacao();
-		int c1 = 1, c2=1;
+		// Variáveis de controle
+		int c1 = 1, c2=0; 
+		int[] tamanhoVetores = {5000, 10000, 15000};
 		
 		// Gerando vetores
-		int[][] vetoresC = {gerarVetor(5000, true), gerarVetor(10000, true), gerarVetor(15000, true)};
-		int[][] vetoresD = {gerarVetor(5000, false), gerarVetor(10000, false), gerarVetor(15000, false)};
-		int[][] vetoresAleatorio = {gerarVetorAleatorio(5000, 5000), gerarVetorAleatorio(10000, 10000), gerarVetorAleatorio(15000, 15000)};
+		int[][] vetoresC = {gerarVetor(tamanhoVetores[0], true), gerarVetor(tamanhoVetores[1], true), gerarVetor(tamanhoVetores[2], true)};
+		int[][] vetoresD = {gerarVetor(tamanhoVetores[0], false), gerarVetor(tamanhoVetores[1], false), gerarVetor(tamanhoVetores[2], false)};
+		int[][] vetoresAleatorio = {gerarVetorAleatorio(tamanhoVetores[0], tamanhoVetores[0]), gerarVetorAleatorio(tamanhoVetores[1], tamanhoVetores[1]), gerarVetorAleatorio(tamanhoVetores[2], tamanhoVetores[2])};
 		
 		// Controle de média de tempo de execução
 		double[] bubbleSortC = {0,0,0}, bubbleSortD = {0,0,0}, bubbleSortAleatorio = {0,0,0};
@@ -49,7 +53,7 @@ public class BrincandoComOrdenacao {
 		double[] mergeSortC = {0,0,0}, mergeSortD = {0,0,0}, mergeSortAleatorio = {0,0,0};
 		double[] quickSortC = {0,0,0}, quickSortD = {0,0,0}, quickSortAleatorio = {0,0,0};
 		double[] randomQuickSortC = {0,0,0}, randomQuickSortD = {0,0,0}, randomQuickSortAleatorio = {0,0,0};
-		double[] quickSortjavaC = {0,0,0}, quickSortjavaD = {0,0,0}, quickSortjavaAleatorio = {0,0,0};
+		double[] quickSortJavaC = {0,0,0}, quickSortJavaD = {0,0,0}, quickSortJavaAleatorio = {0,0,0};
 		double[] countingSortC = {0,0,0}, countingSortD = {0,0,0}, countingSortAleatorio = {0,0,0};
 		
 		for (int i=0; i<3; i++) {
@@ -78,17 +82,64 @@ public class BrincandoComOrdenacao {
 				randomQuickSortD[i] += (double) o.random_quickSort(vetoresD[i].clone())/1000000000;
 				randomQuickSortAleatorio[i] += (double) o.random_quickSort(vetoresAleatorio[i].clone())/1000000000;
 				
-				quickSortjavaC[i] += (double) o.quickSort_Java(vetoresC[i].clone())/1000000000;
-				quickSortjavaD[i] += (double) o.quickSort_Java(vetoresD[i].clone())/1000000000;
-				quickSortjavaAleatorio[i] += (double) o.quickSort_Java(vetoresAleatorio[i].clone())/1000000000;
+				quickSortJavaC[i] += (double) o.quickSort_Java(vetoresC[i].clone())/1000000000;
+				quickSortJavaD[i] += (double) o.quickSort_Java(vetoresD[i].clone())/1000000000;
+				quickSortJavaAleatorio[i] += (double) o.quickSort_Java(vetoresAleatorio[i].clone())/1000000000;
 				
 				countingSortC[i] += (double) o.countingSort(vetoresC[i].clone())/1000000000;
 				countingSortD[i] += (double) o.countingSort(vetoresD[i].clone())/1000000000;
 				countingSortAleatorio[i] += (double) o.countingSort(vetoresAleatorio[i].clone())/1000000000;
 				System.out.println(c1++ + " execução(ões) completa(s)");
 			}
-			System.out.println("\n" + c2++ + "° vetor completo\n");
+			System.out.println("\nCópia dos vetores de " + tamanhoVetores[c2++] + " elementos foram "
+					+ "ordenados pelos algoritmos selecionados, 50 vezes\n");
 			c1 = 1;
+		}
+		
+		
+		System.out.println("\nMédias:");
+		for (int i=0; i<3; i++) {
+			System.out.println("Para vetores de tamanho " + tamanhoVetores[i] + " (em segundos): \n");
+			
+			System.out.println("Bubble Sort:");
+			System.out.println("* Crescente: " + bubbleSortC[i]);
+			System.out.println("* Decrescente: " + bubbleSortD[i]);
+			System.out.println("* Aleatório: " + bubbleSortAleatorio[i] + "\n");
+			
+			System.out.println("Selection Sort: \n");
+			System.out.println("* Crescente: " + selectionSortC[i]);
+			System.out.println("* Decrescente: " + selectionSortD[i]);
+			System.out.println("* Aleatório: " + selectionSortAleatorio[i] + "\n");
+			
+			System.out.println("Insertion Sort: \n");
+			System.out.println("* Crescente: " + insertionSortC[i]);
+			System.out.println("* Decrescente: " + insertionSortD[i]);
+			System.out.println("* Aleatório: " + insertionSortAleatorio[i] + "\n");
+			
+			System.out.println("Merge Sort: \n");
+			System.out.println("* Crescente: " + mergeSortC[i]);
+			System.out.println("* Decrescente: " + mergeSortD[i]);
+			System.out.println("* Aleatório: " + mergeSortAleatorio[i] + "\n");
+			
+			System.out.println("Quick Sort: \n");
+			System.out.println("* Crescente: " + quickSortC[i]);
+			System.out.println("* Decrescente: " + quickSortD[i]);
+			System.out.println("* Aleatório: " + quickSortAleatorio[i] + "\n");
+			
+			System.out.println("Random Quick Sort: \n");
+			System.out.println("* Crescente: " + randomQuickSortC[i]);
+			System.out.println("* Decrescente: " + randomQuickSortD[i]);
+			System.out.println("* Aleatório: " + randomQuickSortAleatorio[i] + "\n");
+			
+			System.out.println("Quick Sort Java: \n");
+			System.out.println("* Crescente: " + quickSortJavaC[i]);
+			System.out.println("* Decrescente: " + quickSortJavaD[i]);
+			System.out.println("* Aleatório: " + quickSortJavaAleatorio[i] + "\n");
+			
+			System.out.println("Counting Sort: \n");
+			System.out.println("* Crescente: " + countingSortC[i]);
+			System.out.println("* Decrescente: " + countingSortD[i]);
+			System.out.println("* Aleatório: " + countingSortAleatorio[i] + "\n");
 		}
 	}
 }
