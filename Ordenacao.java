@@ -7,8 +7,8 @@ public class Ordenacao implements Ordenacao_IF {
 
 	@Override
 	public boolean checaVetorOrdenado(int[] numeros) {
-		for (int i=0; i<numeros.length; i++) {
-			if (Math.abs(numeros[i+1] - numeros[i]) != 1) return false;
+		for (int i=1; i<numeros.length-1; i++) {
+			if (numeros[i-1] > numeros[i]) return false;
 		}
 		return true;
 	}
@@ -30,6 +30,8 @@ public class Ordenacao implements Ordenacao_IF {
         }
 
         long endTime = System.nanoTime();
+        if (checaVetorOrdenado(numeros)) System.out.println("Vetor ordenado!");
+        else System.out.println("Vetor desordenado!");
         return endTime - startTime;
 	}
 
@@ -52,6 +54,8 @@ public class Ordenacao implements Ordenacao_IF {
         }
 
         long endTime = System.nanoTime();
+        if (checaVetorOrdenado(numeros)) System.out.println("Vetor ordenado!");
+        else System.out.println("Vetor desordenado!");
         return endTime - startTime;
 	}
 
@@ -74,6 +78,8 @@ public class Ordenacao implements Ordenacao_IF {
         }
 
         long endTime = System.nanoTime();
+        if (checaVetorOrdenado(numeros)) System.out.println("Vetor ordenado!");
+        else System.out.println("Vetor desordenado!");
         return endTime - startTime;
 	}
 
@@ -83,46 +89,53 @@ public class Ordenacao implements Ordenacao_IF {
 
 		int n = numeros.length;
 		
-		if (n != 1) {
-			int meio = n / 2;
-		    int[] left = new int[meio];
-		    int[] right = new int[n - meio];
-		    
-		    for (int i = 0; i < meio; i++) {
-		        left[i] = numeros[i];
-		    }
-		    for (int i = meio; i < n; i++) {
-		        right[i - meio] = numeros[i];
-		    }
-		    mergeSort(left);
-		    mergeSort(right);
-		    
-		    merge(numeros, left, right);
-        }
+		int[] tempArray = new int[n];
+        
+        mergeSortRecursive(numeros, tempArray, 0, n - 1);
 
         long endTime = System.nanoTime();
+        if (checaVetorOrdenado(numeros)) System.out.println("Vetor ordenado!");
+        else System.out.println("Vetor desordenado!");
         return endTime - startTime;
 	}
 	
-	public void merge(int[] numeros, int[] left, int[] right) {
-		int i = 0, j = 0, k = 0;
+	public static void mergeSortRecursive(int[] numeros, int[] tempArray, int esquerda, int direita) {
+		if (esquerda < direita) {
+            int meio = (esquerda + direita) / 2;
 
-	    while (i < left.length && j < right.length) {
-	        if (left[i] <= right[j]) {
-	            numeros[k++] = left[i++];
-	        } else {
-	            numeros[k++] = right[j++];
-	        }
-	    }
+            mergeSortRecursive(numeros, tempArray, esquerda, meio);
+            mergeSortRecursive(numeros, tempArray, meio + 1, direita);
 
-	    while (i < left.length) {
-	        numeros[k++] = left[i++];
-	    }
-
-	    while (j < right.length) {
-	        numeros[k++] = right[j++];
-	    }
+            merge(numeros, tempArray, esquerda, meio, direita);
+        }
 	}
+	
+	private static void merge(int[] numeros, int[] tempArray, int esquerda, int meio, int direita) {
+        for (int i = esquerda; i <= direita; i++) {
+            tempArray[i] = numeros[i];
+        }
+
+        int i = esquerda;
+        int j = meio + 1;
+        int k = esquerda;
+
+        while (i <= meio && j <= direita) {
+            if (tempArray[i] <= tempArray[j]) {
+                numeros[k] = tempArray[i];
+                i++;
+            } else {
+                numeros[k] = tempArray[j];
+                j++;
+            }
+            k++;
+        }
+
+        while (i <= meio) {
+            numeros[k] = tempArray[i];
+            k++;
+            i++;
+        }
+    }
 
 	@Override
 	public long quickSort(int[] numeros) {
@@ -131,6 +144,8 @@ public class Ordenacao implements Ordenacao_IF {
         quickSortRecursive(numeros, 0, numeros.length - 1);
 
         long endTime = System.nanoTime();
+        if (checaVetorOrdenado(numeros)) System.out.println("Vetor ordenado!");
+        else System.out.println("Vetor desordenado!");
         return endTime - startTime;
     }
 
@@ -169,6 +184,8 @@ public class Ordenacao implements Ordenacao_IF {
         randomizedQuickSortRecursive(numeros, 0, numeros.length - 1);
 
         long endTime = System.nanoTime();
+        if (checaVetorOrdenado(numeros)) System.out.println("Vetor ordenado!");
+        else System.out.println("Vetor desordenado!");
         return endTime - startTime;
     }
 
@@ -198,6 +215,8 @@ public class Ordenacao implements Ordenacao_IF {
 		Arrays.sort(numeros);
 		
         long endTime = System.nanoTime();
+        if (checaVetorOrdenado(numeros)) System.out.println("Vetor ordenado!");
+        else System.out.println("Vetor desordenado!");
         return endTime - startTime;
 	}
 
@@ -234,6 +253,8 @@ public class Ordenacao implements Ordenacao_IF {
         }
 
         long endTime = System.nanoTime();
+        if (checaVetorOrdenado(numeros)) System.out.println("Vetor ordenado!");
+        else System.out.println("Vetor desordenado!");
         return endTime - startTime;
 	}
 	

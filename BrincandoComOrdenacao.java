@@ -58,41 +58,66 @@ public class BrincandoComOrdenacao {
 		
 		for (int i=0; i<3; i++) {
 			for (int j=0; j<50; j++) {
+				System.out.print("• Bubble Sort Crescente: ");
 				bubbleSortC[i] += (double) o.bubbleSort(vetoresC[i].clone())/1000000000;
+				System.out.print("• Bubble Sort Decrescente: ");
 				bubbleSortD[i] += (double) o.bubbleSort(vetoresD[i].clone())/1000000000;
+				System.out.print("• Bubble Sort Aleatório: ");
 				bubbleSortAleatorio[i] += (double) o.bubbleSort(vetoresAleatorio[i].clone())/1000000000;
 				
+				System.out.print("• Selection Sort Crescente: ");
 				selectionSortC[i] += (double) o.selectionSort(vetoresC[i].clone())/1000000000;
+				System.out.print("• Selection Sort Decrescente: ");
 				selectionSortD[i] += (double) o.selectionSort(vetoresD[i].clone())/1000000000;
+				System.out.print("• Selection Sort Aleatório: ");
 				selectionSortAleatorio[i] += (double) o.selectionSort(vetoresAleatorio[i].clone())/1000000000;
 				
+				System.out.print("• Insertion Sort Crescente: ");
 				insertionSortC[i] += (double) o.insertionSort(vetoresC[i].clone())/1000000000;
+				System.out.print("• Insertion Sort Decrescente: ");
 				insertionSortD[i] += (double) o.insertionSort(vetoresD[i].clone())/1000000000;
+				System.out.print("• Insertion Sort Aleatório: ");
 				insertionSortAleatorio[i] += (double) o.insertionSort(vetoresAleatorio[i].clone())/1000000000;
 				
+				System.out.print("• Merge Sort Crescente: ");
 				mergeSortC[i] += (double) o.mergeSort(vetoresC[i].clone())/1000000000;
+				System.out.print("• Merge Sort Decrescente: ");
 				mergeSortD[i] += (double) o.mergeSort(vetoresD[i].clone())/1000000000;
+				System.out.print("• Merge Sort Aleatório: ");
 				mergeSortAleatorio[i] += (double) o.mergeSort(vetoresAleatorio[i].clone())/1000000000;
 				
+				System.out.print("• Quick Sort Crescente: ");
 				quickSortC[i] += (double) o.quickSort(vetoresC[i].clone())/1000000000;
+				System.out.print("• Quick Sort Decrescente: ");
 				quickSortD[i] += (double) o.quickSort(vetoresD[i].clone())/1000000000;
+				System.out.print("• Quick Sort Aleatório: ");
 				quickSortAleatorio[i] += (double) o.quickSort(vetoresAleatorio[i].clone())/1000000000;
 				
+				System.out.print("• Random Quick Sort Crescente: ");
 				randomQuickSortC[i] += (double) o.random_quickSort(vetoresC[i].clone())/1000000000;
+				System.out.print("• Random Quick Sort Decrescente: ");
 				randomQuickSortD[i] += (double) o.random_quickSort(vetoresD[i].clone())/1000000000;
+				System.out.print("• Random Quick Sort Aleatório: ");
 				randomQuickSortAleatorio[i] += (double) o.random_quickSort(vetoresAleatorio[i].clone())/1000000000;
 				
+				System.out.print("• Quick Sort Java Crescente: ");
 				quickSortJavaC[i] += (double) o.quickSort_Java(vetoresC[i].clone())/1000000000;
+				System.out.print("• Quick Sort Java Decrescente: ");
 				quickSortJavaD[i] += (double) o.quickSort_Java(vetoresD[i].clone())/1000000000;
+				System.out.print("• Quick Sort Java Aleatório: ");
 				quickSortJavaAleatorio[i] += (double) o.quickSort_Java(vetoresAleatorio[i].clone())/1000000000;
 				
+				System.out.print("• Counting Sort Java Crescente: ");
 				countingSortC[i] += (double) o.countingSort(vetoresC[i].clone())/1000000000;
+				System.out.print("• Counting Sort Java Decrescente: ");
 				countingSortD[i] += (double) o.countingSort(vetoresD[i].clone())/1000000000;
+				System.out.print("• Counting Sort Java Aleatório: ");
 				countingSortAleatorio[i] += (double) o.countingSort(vetoresAleatorio[i].clone())/1000000000;
-				System.out.println(c1++ + " execução(ões) completa(s)");
+				
+				System.out.println("\n[•] " + c1++ + " execução(ões) completa(s)\n");
 			}
-			System.out.println("\nCópia dos vetores de " + tamanhoVetores[c2++] + " elementos foram "
-					+ "ordenados pelos algoritmos selecionados, 50 vezes\n");
+			System.out.println("\n\n→ Cópia dos vetores de " + tamanhoVetores[c2++] + " elementos foram "
+					+ "ordenados pelos algoritmos selecionados, 50 vezes\n\n");
 			c1 = 1;
 		}
 		
